@@ -1,0 +1,84 @@
+{
+  "_meta": {
+    "sources": [
+      "loopback/common/models",
+      "loopback/server/models",
+      "../common/models",
+      "./models"
+    ],
+    "mixins": [
+      "loopback/common/mixins",
+      "loopback/server/mixins",
+      "../common/mixins",
+      "./mixins"
+    ]
+  },
+  "User": {
+    "dataSource": "activityDB",
+    "public": false
+  },
+  "AccessToken": {
+    "dataSource": "activityDB",
+    "public": false
+  },
+  "ACL": {
+    "dataSource": "activityDB",
+    "public": false
+  },
+  "RoleMapping": {
+    "dataSource": "activityDB",
+    "public": false
+  },
+  "Role": {
+    "dataSource": "activityDB",
+    "public": false
+  },
+  "company": {
+    "dataSource": "activityDB",
+    "public": true
+  },
+  "companyActivity": {
+    "dataSource": "activityDB",
+    "public": true
+  },
+  "companyOrder": {
+    "dataSource": "activityDB",
+    "public": true
+  },
+  "companySn": {
+    "dataSource": "activityDB",
+    "public": true
+  },
+  "companyMonthly": {
+    "dataSource": "activityDB",
+    "public": true
+  },
+  "Email": {
+    "dataSource": "emailDs"
+  },
+  "container": {
+      "dataSource": "storage",
+      "public": true
+  },
+
+  "globalRegion":{
+    "dataSource": "activityDB",
+    "public": true
+  },
+
+  "team": {
+    "dataSource": "activityDB",
+    "public": true
+  },
+  "avatar":{
+    "dataSource": "db",
+    "public": false
+  },
+  "user": {
+    "dataSource": "activityDB",
+    "public": true,
+    "options": {
+      "emailVerificationRequired": true
+    }
+  }
+}

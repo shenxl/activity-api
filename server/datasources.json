@@ -1,0 +1,41 @@
+{
+  "db": {
+    "name": "db",
+    "connector": "memory"
+  },
+  "activityDB": {
+    "host": "127.0.0.1",
+    "port": 3306,
+    "database": "wpsactivity",
+    "password": "",
+    "name": "activityDB",
+    "user": "root",
+    "connector": "mysql"
+  },
+  "emailDs": {
+    "name": "emailDs",
+    "connector": "mail",
+    "transports": [
+      {
+        "type": "smtp",
+        "host": "smtp.163.com",
+        "secure": true,
+        "port": 465,
+        "tls": {
+          "rejectUnauthorized": false
+        },
+        "auth": {
+          "user": "wpssupport@163.com",
+          "pass": "12345qwert"
+        }
+      }
+    ]
+  },
+  "storage": {
+      "name": "storage",
+      "connector": "loopback-component-storage",
+      "provider": "filesystem",
+      "root": "./server/storage",
+      "maxFileSize": "52428800"
+  }
+}

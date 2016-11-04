@@ -1,0 +1,92 @@
+{
+  "name": "company",
+  "plural": "companies",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true,
+    "mysql": {
+      "table": "v_company_order_buy"
+    }
+  },
+  "properties": {
+    "id": {
+      "type": "number",
+      "required": true
+    },
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "group_id": {
+      "type": "number"
+    },
+    "is_group": {
+      "type": "boolean"
+    },
+    "buy":{
+      "type": "number"
+    },
+    "region": {
+      "type": "string"
+    },
+    "province": {
+      "type": "string"
+    },
+    "city": {
+      "type": "string"
+    },
+    "county": {
+      "type": "string"
+    },
+    "address": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string"
+    },
+    "industry": {
+      "type": "string"
+    },
+    "important": {
+      "type": "string"
+    },
+    "created_at": {
+      "type": "date"
+    },
+    "updated_at": {
+      "type": "date"
+    },
+    "deleted_at": {
+      "type": "date"
+    }
+  },
+  "validations": [],
+  "relations": {
+    "order": {
+      "type": "hasMany",
+      "model": "companyOrder",
+      "foreignKey": "company_id"
+    },
+    "monthly": {
+      "type": "hasMany",
+      "model": "companyMonthly",
+      "foreignKey": "company_id"
+    },
+    "sn": {
+      "type": "hasMany",
+      "model": "companySn",
+      "foreignKey": "company_id"
+    }
+  },
+  "acls": [
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "ALLOW",
+      "property": "companiesList"
+    }
+  ],
+  "methods": {}
+}

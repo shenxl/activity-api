@@ -1,0 +1,54 @@
+{
+  "name": "companySn",
+  "plural": "companySns",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "idInjection": true,
+    "mysql": {
+      "table": "company_sn"
+    }
+  },
+  "properties": {
+    "id": {
+      "type": "number",
+      "required": true
+    },
+    "company_id": {
+      "type": "number",
+      "required": true
+    },
+    "sn": {
+      "type": "string",
+      "required": true
+    },
+
+    "created_at": {
+      "type": "date"
+    },
+    "updated_at": {
+      "type": "date"
+    },
+    "deleted_at": {
+      "type": "date"
+    }
+  },
+  "validations": [],
+  "relations": {
+    "company": {
+      "type": "hasOne",
+      "model": "company",
+      "foreignKey": "id"
+    }
+  },
+  "acls": [
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "ALLOW",
+      "property": "companiesList"
+    }
+  ],
+  "methods": {}
+}

@@ -1,0 +1,115 @@
+{
+  "name": "companyActivity",
+  "plural": "companyActivities",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true,
+    "mysql": {
+      "table": "v_company_activity"
+    }
+  },
+  "properties": {
+    "id": {
+      "type": "number",
+      "required": true
+    },
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "group_id": {
+      "type": "number"
+    },
+    "is_group": {
+      "type": "boolean"
+    },
+    "buy":{
+      "type": "number"
+    },
+    "region": {
+      "type": "string"
+    },
+    "province": {
+      "type": "string"
+    },
+    "city": {
+      "type": "string"
+    },
+    "county": {
+      "type": "string"
+    },
+    "address": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string"
+    },
+    "industry": {
+      "type": "string"
+    },
+    "important": {
+      "type": "string"
+    },
+    "created_at": {
+      "type": "date"
+    },
+    "updated_at": {
+      "type": "date"
+    },
+    "deleted_at": {
+      "type": "date"
+    },
+    "year": {
+      "type": "number"
+    },
+    "month": {
+      "type": "number"
+    },
+    "activity_sum": {
+      "type": "number"
+    },
+    "activity_max": {
+      "type": "number"
+    },
+    "activity_avg": {
+      "type": "number"
+    },
+    "install_sum": {
+      "type": "number"
+    },
+    "install_max": {
+      "type": "number"
+    },
+    "install_avg": {
+      "type": "number"
+    },
+    "install_total":{
+      "type": "number"
+    }
+
+  },
+  "validations": [],
+  "relations": {
+    "order": {
+      "type": "hasMany",
+      "model": "companyOrder",
+      "foreignKey": "company_id"
+    },
+    "monthly": {
+      "type": "hasMany",
+      "model": "companyMonthly",
+      "foreignKey": "company_id"
+    }
+  },
+  "acls": [
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "ALLOW",
+      "property": "companiesList"
+    }
+  ],
+  "methods": {}
+}

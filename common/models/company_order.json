@@ -1,0 +1,85 @@
+{
+  "name": "companyOrder",
+  "plural": "companyOrders",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "idInjection": true,
+    "mysql": {
+      "table": "company_order"
+    }
+  },
+  "properties": {
+    "id": {
+      "type": "number",
+      "required": true
+    },
+    "company_id": {
+      "type": "number",
+      "required": true
+    },
+    "group_id": {
+      "type": "number"
+    },
+    "sns": {
+      "type": "string"
+    },
+    "order_number": {
+      "type": "number"
+    },
+    "order_type": {
+      "type": "string"
+    },
+    "order_area": {
+      "type": "string"
+    },
+    "order_name": {
+      "type": "string"
+    },
+    "authorization_years": {
+      "type": "number"
+    },
+    "authorization_date": {
+      "type": "date"
+    },
+    "length_of_service": {
+      "type": "number"
+    },
+    "service_date": {
+      "type": "date"
+    },
+    "after_authorization": {
+      "type": "number"
+    },
+    "prediction": {
+      "type": "number"
+    },
+    "created_at": {
+      "type": "date"
+    },
+    "updated_at": {
+      "type": "date"
+    },
+    "deleted_at": {
+      "type": "date"
+    }
+  },
+  "validations": [],
+  "relations": {
+    "company": {
+      "type": "hasOne",
+      "model": "company",
+      "foreignKey": "id"
+    }
+  },
+  "acls": [
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "ALLOW",
+      "property": "companiesList"
+    }
+  ],
+  "methods": {}
+}
