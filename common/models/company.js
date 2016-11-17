@@ -21,7 +21,6 @@ var countSumForMonthly = function(monthly,fiterFunc) {
 };
 
 var getRecordByCompany = function(company, options) {
-  console.log(options);
   return _.chain(company).
     map(function(o) {
       const companyObj = o.toJSON();
@@ -87,13 +86,11 @@ module.exports = function(Company) {
   });
 
   Company.getRecord = function (context,filter,limit,skip,year,month,field,seq,cb){
-    console.log("开始数据获取");
     nowdate =  _.now();
     Company.find(filter,function(err,company){
       if(err){
         cb(err)
       }
-      console.log("数据获取完成" ,_.now() - nowdate);
       nowdate =  _.now();
       const options = {
          month : _.toInteger(month) || new Date().getMonth() + 1,
@@ -113,8 +110,6 @@ module.exports = function(Company) {
       },[]);
 
       const active_report = getReportByMonthly(companyMonthly).value();
-
-      console.log("企业数据处理 done" ,_.now() - nowdate);
       nowdate =  _.now();
 
       context.res.statusCode = 201;

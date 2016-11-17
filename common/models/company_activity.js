@@ -10,15 +10,12 @@ const catalogType = {
 
 module.exports = function(CompanyAtivity) {
   CompanyAtivity.afterRemote('findOne', function(context, company, next) {
-    console.log("afterRemote" , company);
   });
 
   CompanyAtivity.beforeRemote('findOne', function(context, company, next) {
-    console.log("beforeRemote" , company);
   });
 
   CompanyAtivity.catalog = function (ctx,type,options,cb) {
-    console.log();
     let typefilter , optwhere , filter= {};
 
     if(!type) typefilter = { where : { type :{ inq : catalogType["GOVERNMENT"] } } };

@@ -38,7 +38,7 @@ module.exports = function(User) {
 
 
   User.afterRemote('create', function(context, user, next) {
-    console.log('> user.afterRemote triggered');
+
     var options = {
       type: 'email',
       to: user.email,
@@ -56,9 +56,6 @@ module.exports = function(User) {
         User.deleteById(user.id);
         return next(err);
       }
-
-      console.log('> verification email sent:', response);
-
       context.res.statusCode = 201;
       context.res.json({
         success: true,
@@ -73,7 +70,6 @@ module.exports = function(User) {
     var url = 'http://' + config.host + ':' + config.port + '/reset-password';
     var html = 'Click <a href="' + url + '?access_token=' +
         info.accessToken.id + '">here</a> to reset your password';
-    console.log(info);
     User.app.models.Email.send({
       to: info.email,
       from: 'wpssupport@163.com',
