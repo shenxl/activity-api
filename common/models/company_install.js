@@ -3,6 +3,6 @@ var objectAssign = require('object-assign');
 var _ = require('lodash');
 
 
-module.exports = function(companyMonthly) {
-  
+module.exports = function(companyInstall) {
+
 };

@@ -1,5 +1,12 @@
 'use strict';
 var objectAssign = require('object-assign');
+var _ = require('lodash');
+const catalogType = {
+  GOVERNMENT : ["政府","政府行业","部委"],
+  ENTERPRISE : ["企业","地方国企","央企","港澳台企业"],
+  FINANCE : ["金融"],
+  NORMALIZATION  : ["常态化"]
+};
 
 module.exports = function(CompanyAtivity) {
   CompanyAtivity.afterRemote('findOne', function(context, company, next) {
@@ -11,14 +18,8 @@ module.exports = function(CompanyAtivity) {
   });
 
   CompanyAtivity.catalog = function (ctx,type,options,cb) {
-
+    console.log();
     let typefilter , optwhere , filter= {};
-    const catalogType = {
-      GOVERNMENT : ["政府","政府行业","部委"],
-      ENTERPRISE : ["企业","地方国企","央企","港澳台企业"],
-      FINANCE : ["金融"],
-      NORMALIZATION  : ["常态化"]
-    };
 
     if(!type) typefilter = { where : { type :{ inq : catalogType["GOVERNMENT"] } } };
     else {

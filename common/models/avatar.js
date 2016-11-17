@@ -1,5 +1,6 @@
 var CONTAINERS_URL = '/api/containers/';
 module.exports = function(Avatar) {
+
     Avatar.upload = function (ctx,options,cb) {
         if(!options) options = {};
         ctx.req.params.container = 'avatar';

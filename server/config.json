@@ -5,7 +5,7 @@
   "client":{
     "protocol" : "http",
     "host": "localhost",
-    "port": 8989,
+    "port": 8080,
     "loginUrl" : "/pass/login"
   },
   "remoting": {

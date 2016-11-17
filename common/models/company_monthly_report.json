@@ -1,12 +1,12 @@
 {
-  "name": "companyActivity",
-  "plural": "companyActivities",
+  "name": "companyMonthlyReport",
+  "plural": "companyMonthlyReports",
   "base": "PersistedModel",
   "idInjection": true,
   "options": {
     "validateUpsert": true,
     "mysql": {
-      "table": "v_company_activity"
+      "table": "v_company_monthly_report"
     }
   },
   "properties": {
@@ -14,18 +14,13 @@
       "type": "number",
       "required": true
     },
+    "company_id": {
+      "type": "number",
+      "required": true
+    },
     "name": {
       "type": "string",
       "required": true
-    },
-    "group_id": {
-      "type": "number"
-    },
-    "is_group": {
-      "type": "boolean"
-    },
-    "buy":{
-      "type": "number"
     },
     "region": {
       "type": "string"
@@ -39,9 +34,6 @@
     "county": {
       "type": "string"
     },
-    "address": {
-      "type": "string"
-    },
     "type": {
       "type": "string"
     },
@@ -51,14 +43,8 @@
     "important": {
       "type": "string"
     },
-    "created_at": {
-      "type": "date"
-    },
-    "updated_at": {
-      "type": "date"
-    },
-    "deleted_at": {
-      "type": "date"
+    "server_id": {
+      "type": "number"
     },
     "year": {
       "type": "number"
@@ -69,34 +55,15 @@
     "activity_sum": {
       "type": "number"
     },
-    "activity_max": {
-      "type": "number"
-    },
     "activity_avg": {
       "type": "number"
     },
     "install_sum": {
       "type": "number"
-    },
-    "install_max": {
-      "type": "number"
-    },
-    "install_avg": {
-      "type": "number"
-    },
-    "install_total":{
-      "type": "number"
     }
-
   },
   "validations": [],
-  "relations": {
-    "company": {
-      "type": "belongsTo",
-      "model": "company",
-      "foreignKey": "id"
-    }
-  },
+  "relations": {},
   "acls": [],
   "methods": {}
 }

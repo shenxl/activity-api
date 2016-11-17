@@ -33,38 +33,6 @@
     "dataSource": "activityDB",
     "public": false
   },
-  "company": {
-    "dataSource": "activityDB",
-    "public": true
-  },
-  "companyActivity": {
-    "dataSource": "activityDB",
-    "public": true
-  },
-  "companyOrder": {
-    "dataSource": "activityDB",
-    "public": true
-  },
-  "companySn": {
-    "dataSource": "activityDB",
-    "public": true
-  },
-  "companyMonthly": {
-    "dataSource": "activityDB",
-    "public": true
-  },
-  "Email": {
-    "dataSource": "emailDs"
-  },
-  "container": {
-      "dataSource": "storage",
-      "public": true
-  },
-
-  "globalRegion":{
-    "dataSource": "activityDB",
-    "public": true
-  },
 
   "team": {
     "dataSource": "activityDB",
@@ -80,5 +48,84 @@
     "options": {
       "emailVerificationRequired": true
     }
+  },
+
+  "Email": {
+    "dataSource": "emailDs"
+  },
+  "container": {
+      "dataSource": "storage",
+      "public": true
+  },
+
+  "company": {
+    "dataSource": "activityDB",
+    "public": true
+  },
+  "companyActivity": {
+    "dataSource": "activityDB",
+    "public": true
+  },
+  "companyViewer": {
+    "dataSource": "activityDB",
+    "public": true
+  },
+
+  "companyOrder": {
+    "dataSource": "activityDB",
+    "public": true
+  },
+  "companySn": {
+    "dataSource": "activityDB",
+    "public": true
+  },
+
+  "server": {
+    "dataSource": "activityDB",
+    "public": true
+  },
+
+  "companyMonthly": {
+    "dataSource": "activityDB",
+    "public": true
+  },
+
+  "companyMonthlyReport": {
+    "dataSource": "activityDB",
+    "public": true
+  },
+  
+  "companyVersionReport": {
+    "dataSource": "activityDB",
+    "public": true
+  },
+
+  "companyDaily": {
+    "dataSource": "activityDB",
+    "public": true
+  },
+  "companyInstall": {
+    "dataSource": "activityDB",
+    "public": true
+  },
+
+  "versionDaily": {
+    "dataSource": "activityDB",
+    "public": true
+  },
+  "versionMonthly": {
+    "dataSource": "activityDB",
+    "public": true
+  },
+
+  "companyCatalog": {
+    "dataSource": "activityDB",
+    "public": true
+  },
+
+  "globalRegion":{
+    "dataSource": "activityDB",
+    "public": true
   }
+
 }

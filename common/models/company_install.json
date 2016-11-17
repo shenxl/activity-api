@@ -1,16 +1,15 @@
 {
-  "name": "companySn",
-  "plural": "companySns",
+  "name": "companyInstall",
+  "plural": "companyInstalls",
   "base": "PersistedModel",
-  "idInjection": true,
   "options": {
     "idInjection": true,
     "mysql": {
-      "table": "company_sn"
+      "table": "company_install"
     }
   },
   "properties": {
-    "id": {
+    "id":{
       "type": "number",
       "required": true
     },
@@ -18,19 +17,13 @@
       "type": "number",
       "required": true
     },
-    "sn": {
-      "type": "string",
+    "server_id": {
+      "type": "number",
       "required": true
     },
-
-    "created_at": {
-      "type": "date"
-    },
-    "updated_at": {
-      "type": "date"
-    },
-    "deleted_at": {
-      "type": "date"
+    "sum": {
+      "type": "number",
+      "required": true
     }
   },
   "validations": [],
@@ -39,6 +32,11 @@
       "type": "belongsTo",
       "model": "company",
       "foreignKey": "company_id"
+    },
+    "server": {
+      "type": "belongsTo",
+      "model": "server",
+      "foreignKey": "server_id"
     }
   },
   "acls": [],

@@ -6,7 +6,7 @@
   "options": {
     "validateUpsert": true,
     "mysql": {
-      "table": "v_company_order_buy"
+      "table": "company"
     }
   },
   "properties": {
@@ -23,9 +23,6 @@
     },
     "is_group": {
       "type": "boolean"
-    },
-    "buy":{
-      "type": "number"
     },
     "region": {
       "type": "string"
@@ -68,25 +65,40 @@
       "model": "companyOrder",
       "foreignKey": "company_id"
     },
-    "monthly": {
-      "type": "hasMany",
-      "model": "companyMonthly",
-      "foreignKey": "company_id"
-    },
     "sn": {
       "type": "hasMany",
       "model": "companySn",
       "foreignKey": "company_id"
+    },
+
+    "companyMonthly": {
+      "type": "hasMany",
+      "model": "companyMonthly",
+      "foreignKey": "company_id"
+    },
+    "companyDaily": {
+      "type": "hasMany",
+      "model": "companyDaily",
+      "foreignKey": "company_id"
+    },
+    "companyInstall": {
+      "type": "hasMany",
+      "model": "companyInstall",
+      "foreignKey": "company_id"
+    },
+
+    "versionMonthly": {
+      "type": "hasMany",
+      "model": "versionMonthly",
+      "foreignKey": "company_id"
+    },
+    "versionDaily": {
+      "type": "hasMany",
+      "model": "versionDaily",
+      "foreignKey": "company_id"
     }
+
   },
-  "acls": [
-    {
-      "accessType": "EXECUTE",
-      "principalType": "ROLE",
-      "principalId": "$everyone",
-      "permission": "ALLOW",
-      "property": "companiesList"
-    }
-  ],
+  "acls": [],
   "methods": {}
 }
