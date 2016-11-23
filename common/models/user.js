@@ -45,9 +45,10 @@ module.exports = function(User) {
       from: 'wpssupport@163.com',
       subject: '感谢注册 WPS 统计平台',
       template: path.resolve(__dirname, '../../server/views/verify.ejs'),
-      redirect: '/verified',
+      redirect: '/auth/verified',
       text : '请通过浏览器访问以下链接: {href} 验证邮箱 ',
       host : config.host,
+      port : config.prot,
       user: user
     };
 

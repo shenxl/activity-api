@@ -2,7 +2,7 @@
   "name": "companyVersionReport",
   "plural": "companyVersionReports",
   "base": "PersistedModel",
-  "idInjection": true,
+  "idInjection": false,
   "options": {
     "validateUpsert": true,
     "mysql": {
@@ -10,17 +10,15 @@
     }
   },
   "properties": {
-    "id": {
-      "type": "number",
-      "required": true
-    },
     "version": {
       "type": "string",
-      "required": true
+      "required": true,
+      "id": true
     },
     "company_id": {
       "type": "number",
-      "required": true
+      "required": true,
+      "id": true
     },
     "name": {
       "type": "string",
@@ -48,13 +46,16 @@
       "type": "string"
     },
     "server_id": {
-      "type": "number"
+      "type": "number",
+      "id": true
     },
     "year": {
-      "type": "number"
+      "type": "number",
+      "id": true
     },
     "month": {
-      "type": "number"
+      "type": "number",
+      "id": true 
     },
     "activity_sum": {
       "type": "number"

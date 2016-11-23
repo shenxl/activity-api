@@ -3,35 +3,36 @@
   "plural": "versionMonthlies",
   "base": "PersistedModel",
   "options": {
-    "idInjection": true,
+    "idInjection": false,
     "mysql": {
       "table": "version_monthly"
     }
   },
   "properties": {
-    "id":{
-      "type": "number",
-      "required": true
-    },
     "version": {
       "type": "string",
-      "required": true
+      "required": true,
+      "id": true
     },
     "company_id": {
       "type": "number",
-      "required": true
+      "required": true,
+      "id": true
     },
     "server_id": {
       "type": "number",
-      "required": true
+      "required": true,
+      "id": true
     },
     "year": {
       "type": "number",
-      "required": true
+      "required": true,
+      "id": true
     },
     "month": {
       "type": "number",
-      "required": true
+      "required": true,
+      "id": true
     },
     "activity_sum": {
       "type": "number"

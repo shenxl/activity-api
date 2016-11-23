@@ -10,7 +10,7 @@ module.exports = function(app) {
   var User = app.models.user;
 
   //verified
-  app.get('/verified', function(req, res) {
+  app.get('/auth/verified', function(req, res) {
     var client = config.client;
     res.redirect(client.protocol + "://" + client.host + ":" + client.port + client.loginUrl);
   });
@@ -31,7 +31,7 @@ module.exports = function(app) {
 
   app.get('/auth/session', function(req, res) {
     if(req.accessToken !== null){
-      User.findOne({id : req.accessToken.userId} , function(err, user){
+      User.findById(req.accessToken.userId , function(err, user){
         if (err) {
           res.json({ error : err })
           return;
@@ -51,7 +51,6 @@ module.exports = function(app) {
     if(req.accessToken !== null){
       var AccessToken = app.models.AccessToken;
       var token = new AccessToken({id : req.accessToken.id});
-      console.log(token);
       token.destroy();
       res.json({ success : true , message :"token clear"})
     }
