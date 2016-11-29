@@ -94,7 +94,7 @@
     "dataSource": "activityDB",
     "public": true
   },
-  
+
   "companyVersionReport": {
     "dataSource": "activityDB",
     "public": true
@@ -120,6 +120,11 @@
 
   "companyCatalog": {
     "dataSource": "activityDB",
+    "public": true
+  },
+
+  "demo":{
+    "dataSource":"activityDB",
     "public": true
   },
 

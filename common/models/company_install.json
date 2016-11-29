@@ -3,23 +3,21 @@
   "plural": "companyInstalls",
   "base": "PersistedModel",
   "options": {
-    "idInjection": true,
+    "idInjection": false,
     "mysql": {
       "table": "company_install"
     }
   },
   "properties": {
-    "id":{
-      "type": "number",
-      "required": true
-    },
     "company_id": {
       "type": "number",
-      "required": true
+      "required": true,
+      "id": 1
     },
     "server_id": {
       "type": "number",
-      "required": true
+      "required": true,
+      "id": 2
     },
     "sum": {
       "type": "number",

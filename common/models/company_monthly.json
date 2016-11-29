@@ -12,22 +12,22 @@
     "company_id": {
       "type": "number",
       "required": true,
-      "id": true
+      "id": 1
     },
     "server_id": {
       "type": "number",
       "required": true,
-      "id": true
+      "id": 2
     },
     "year": {
       "type": "number",
       "required": true,
-      "id": true
+      "id": 3
     },
     "month": {
       "type": "number",
       "required": true,
-      "id": true
+      "id": 4
     },
     "activity_sum": {
       "type": "number"

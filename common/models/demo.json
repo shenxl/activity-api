@@ -1,0 +1,31 @@
+{
+  "name": "demo",
+  "plural": "demos",
+  "base": "PersistedModel",
+  "options": {
+    "idInjection": true,
+    "mysql": {
+      "table": "demo_table"
+    }
+  },
+  "properties": {
+    "id": {
+      "type": "number"
+    },
+    "name": {
+      "type": "string"
+    },
+    "age": {
+      "type": "number"
+    },
+    "address": {
+      "type": "string"
+    }
+  },
+  "validations": [],
+  "relations": {
+  },
+  "acls": [
+  ],
+  "methods": []
+}

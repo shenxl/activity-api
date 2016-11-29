@@ -12,27 +12,27 @@
     "version": {
       "type": "string",
       "required": true,
-      "id": true
+      "id": 1
     },
     "company_id": {
       "type": "number",
       "required": true,
-      "id": true
+      "id": 2
     },
     "server_id": {
       "type": "number",
       "required": true,
-      "id": true
+      "id": 3
     },
     "year": {
       "type": "number",
       "required": true,
-      "id": true
+      "id": 4
     },
     "month": {
       "type": "number",
       "required": true,
-      "id": true
+      "id": 5
     },
     "activity_sum": {
       "type": "number"
