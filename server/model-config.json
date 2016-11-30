@@ -122,6 +122,10 @@
     "dataSource": "activityDB",
     "public": true
   },
+  
+  "operationHistory":{
+    "dataSource": "activityDB"
+  },
 
   "demo":{
     "dataSource":"activityDB",

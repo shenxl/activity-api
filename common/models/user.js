@@ -7,38 +7,8 @@ var config = require('../../server/config.json');
 var path = require('path');
 
 module.exports = function(User) {
-  //send verification email after registration
-
-  // User.beforeRemote('create', function(context, user, next) {
-  //   console.log(context.args);
-  //   console.log('> user.beforeRemote triggered');
-  //   const userentity = context.args.data;
-  //   User.findOne({ where: {email: userentity.email}}, function(err, user) {
-  //     if (err) {
-  //       return next(err);
-  //     }
-  //
-  //     if(user.emailVerified){
-  //       var err = new Error('email is verified');
-  //       err.statusCode = 302;
-  //       err.redirect = "/login";
-  //       return next(err);
-  //     }
-  //     else {
-  //       var err = new Error('email is signup');
-  //       err.statusCode = 302;
-  //       err.redirect = "/signup/success";
-  //       return next(err);
-  //       return ;
-  //     }
-  //   });
-  //
-  //   next();
-  // });
-
 
   User.afterRemote('create', function(context, user, next) {
-
     var options = {
       type: 'email',
       to: user.email,
