@@ -1,83 +1,73 @@
 'use strict';
-var objectAssign = require('object-assign');
+var _ = require('lodash');
+var loopback = require('loopback');
+var LoopBackContext = require('loopback-context');
+var moment = require('moment');
 
 module.exports = function(Company) {
-  Company.afterRemote('findOne', function(context, company, next) {
-    console.log("afterRemote" , company);
-  });
+  Company.observe('before save', function(ctx, next) {
+    const dateUpdater = ctx.instance ? ctx.instance : ctx.data;
+    if (!ctx.isNewInstance) {
+      dateUpdater.updated_at = moment().format();
 
-  Company.beforeRemote('findOne', function(context, company, next) {
-    console.log("beforeRemote" , company);
-  });
+      const newItem = ctx.data;
+      const oldItem = ctx.currentInstance.toJSON();
 
-  Company.catalog = function (ctx,type,options,cb) {
+      const diff = _.reduce(oldItem, function(result, value, field) {
+        return _.isEqual(value, newItem[field]) ?
+              result : result.concat({field: field, new_value: newItem[field], old_value: value});
+      }, []);
+      const modelName =  ctx.Model.modelName;
+      const context = LoopBackContext.getCurrentContext();
+      const currentUser = context && context.get('currentUser');
+      const user_id = (currentUser && currentUser.id) || 0;
 
-    let typefilter , optwhere , filter= {};
-    const catalogType = {
-      GOVERNMENT : ["政府","政府行业","部委"],
-      ENTERPRISE : ["企业","地方国企","央企","港澳台企业"],
-      FINANCE : ["金融"],
-      NORMALIZATION  : ["常态化"]
-    };
+      const operation = _.chain(diff).
+        filter((item) => { return _.indexOf(['created_at', 'updated_at', 'deleted_at'], item.field) === -1; }).
+        map((item) => {
+          return _.assign(item, {user_id, type: 'update', table_name: modelName, table_id: oldItem.id, created_at: moment().format()});
+        }).value();
 
-    if(!type) typefilter = { where : { type :{ inq : catalogType["GOVERNMENT"] } } };
-    else {
-       const catalog = catalogType[type.toLocaleUpperCase()];
-       typefilter = { where : { type : { inq : catalog } } }
-    }
-
-    if(options && options.where){
-      let andopt = [];
-      andopt.push(options.where);
-      andopt.push(typefilter.where);
-      optwhere = { where: { and : andopt }}
+      const OperationHistory = Company.app.models.operationHistory;
+      OperationHistory.create(operation, function(err, result) {
+        if (err) {
+          return next(err);
+        } else {
+          next();
+        }
+      });
     } else {
-      optwhere = objectAssign({}, options, typefilter);
+      dateUpdater.created_at = moment().format();
+      next();
     }
+  });
 
-    filter = objectAssign({}, options, optwhere);
+  Company.observe('after save', function(ctx, next) {
+    if (ctx.isNewInstance) {
+      const modelName =  ctx.Model.modelName;
+      const context = LoopBackContext.getCurrentContext();
+      const currentUser = context && context.get('currentUser');
+      const OperationHistory = Company.app.models.operationHistory;
+      const user_id = (currentUser && currentUser.id) || 0;
+      const newItem = ctx.instance.toJSON();
+      const add = _.reduce(newItem, function(result, value, field) {
+        return result.concat({field: field, new_value: newItem[field], old_value: ''});
+      }, []);
+      const operation = _.chain(add).
+        filter((item) => { return _.indexOf(['created_at', 'updated_at', 'deleted_at'], item.field) === -1; }).
+        map((item) => {
+          return _.assign(item, {user_id, type: 'create', table_name: modelName, table_id: newItem.id, created_at: moment().format()});
+        }).value();
 
-    Company.count(optwhere.where, function(err, count){
-      if (err) {
-        cb(err)
-      } else {
-        Company.find(filter , function(err, companies){
-          if(err){
-            cb(err);
-          } else {
-            ctx.res.statusCode = 201;
-            ctx.res.json({
-              success: true,
-              data : companies,
-              page : {
-                total : count,
-                current : options && (options.skip || 0 )
-              }
-            })
-          }
-        });
-      }
-    })
-
-  };
-
-  Company.remoteMethod(
-      'catalog',
-      {
-          description: ['企业根据大分类返回数据 , 其中:',
-                    'GOVERNMENT: 获得政府数据',
-                    'ENTERPRISE: 获得企业数据',
-                    'FINANCE: 获得金融数据',
-                    'NORMALIZATION: 获得常态化数据.'],
-          accepts: [
-              { arg: 'ctx', type: 'object', http: { source:'context' } },
-              { arg: 'type', type: 'string', http:{ source: 'query'} },
-              { arg: 'options', type: 'object', http:{ source: 'query'} }
-          ],
-          returns: {
-              arg: 'companies', type: 'object', root: true
-          },
-          http: {verb: 'get'}
-      }
-  );
+      OperationHistory.create(operation, function(err, result) {
+        if (err) {
+          return next(err);
+        } else {
+          next();
+        }
+      });
+    } else {
+      next();
+    }
+  });
 };

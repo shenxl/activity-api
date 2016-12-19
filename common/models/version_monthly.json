@@ -1,50 +1,43 @@
 {
-  "name": "companyMonthly",
-  "plural": "companyMonthlies",
+  "name": "versionMonthly",
+  "plural": "versionMonthlies",
   "base": "PersistedModel",
   "options": {
     "idInjection": false,
     "mysql": {
-      "table": "company_monthly"
+      "table": "version_monthly"
     }
   },
   "properties": {
-    "company_id": {
-      "type": "number",
+    "version": {
+      "type": "string",
       "required": true,
       "id": 1
     },
-    "server_id": {
+    "company_id": {
       "type": "number",
       "required": true,
       "id": 2
     },
-    "year": {
+    "server_id": {
       "type": "number",
       "required": true,
       "id": 3
     },
-    "month": {
+    "year": {
       "type": "number",
       "required": true,
       "id": 4
     },
+    "month": {
+      "type": "number",
+      "required": true,
+      "id": 5
+    },
     "activity_sum": {
       "type": "number"
     },
-    "activity_max": {
-      "type": "number"
-    },
-    "activity_avg": {
-      "type": "number"
-    },
     "install_sum": {
-      "type": "number"
-    },
-    "install_max": {
-      "type": "number"
-    },
-    "install_avg": {
       "type": "number"
     }
   },

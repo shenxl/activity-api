@@ -1,3 +1,7 @@
 {
-  "extends": "loopback"
+  "extends": "loopback",
+  "rules": {
+    max-len: ["off"],
+    camelcase: ["off"]
+  }
 }

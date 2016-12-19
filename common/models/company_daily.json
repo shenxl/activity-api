@@ -1,50 +1,42 @@
 {
-  "name": "companyMonthly",
-  "plural": "companyMonthlies",
+  "name": "companyDaily",
+  "plural": "companyDailies",
   "base": "PersistedModel",
   "options": {
-    "idInjection": false,
+    "idInjection": true,
     "mysql": {
-      "table": "company_monthly"
+      "table": "company_daily"
     }
   },
   "properties": {
+    "id":{
+      "type": "number",
+      "required": true
+    },
     "company_id": {
       "type": "number",
-      "required": true,
-      "id": 1
+      "required": true
     },
     "server_id": {
       "type": "number",
-      "required": true,
-      "id": 2
+      "required": true
     },
     "year": {
       "type": "number",
-      "required": true,
-      "id": 3
+      "required": true
     },
     "month": {
       "type": "number",
-      "required": true,
-      "id": 4
+      "required": true
+    },
+    "day": {
+      "type": "number",
+      "required": true
     },
     "activity_sum": {
       "type": "number"
     },
-    "activity_max": {
-      "type": "number"
-    },
-    "activity_avg": {
-      "type": "number"
-    },
     "install_sum": {
-      "type": "number"
-    },
-    "install_max": {
-      "type": "number"
-    },
-    "install_avg": {
       "type": "number"
     }
   },

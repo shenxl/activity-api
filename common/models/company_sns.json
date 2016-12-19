@@ -36,19 +36,11 @@
   "validations": [],
   "relations": {
     "company": {
-      "type": "hasOne",
+      "type": "belongsTo",
       "model": "company",
-      "foreignKey": "id"
+      "foreignKey": "company_id"
     }
   },
-  "acls": [
-    {
-      "accessType": "EXECUTE",
-      "principalType": "ROLE",
-      "principalId": "$everyone",
-      "permission": "ALLOW",
-      "property": "companiesList"
-    }
-  ],
+  "acls": [],
   "methods": {}
 }

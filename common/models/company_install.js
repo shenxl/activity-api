@@ -1,21 +1,12 @@
+/*eslint camelcase: ["off", { properties: "never"}]*/
+/*eslint max-len: ["off"]*/
 'use strict';
 var _ = require('lodash');
 var loopback = require('loopback');
 var LoopBackContext = require('loopback-context');
 
-module.exports = function(companyMonthly) {
-  companyMonthly.remoteMethod('destroyAll', {
-    isStatic: true,
-    description: 'Delete all matching records',
-    accessType: 'WRITE',
-    accepts: {arg: 'where', type: 'object', description: 'filter.where object'},
-    http: {verb: 'del', path: '/'},
-    returns: {
-      arg: 'success', type: 'object', root: true,
-    },
-  });
-
-  companyMonthly.observe('after save', function(ctx, next) {
+module.exports = function(companyInstall) {
+  companyInstall.observe('after save', function(ctx, next) {
     const newItem = ctx.instance.toJSON();
     const add = _.reduce(newItem, function(result, value, field) {
       return result.concat({field: field, new_value: newItem[field], old_value: ''});
@@ -24,7 +15,7 @@ module.exports = function(companyMonthly) {
     const context = LoopBackContext.getCurrentContext();
     const currentUser = context && context.get('currentUser');
     const user_id = (currentUser && currentUser.id) || 0;
-    const table_id = `${newItem.company_id}-${newItem.server_id}-${newItem.year}-${newItem.month}`;
+    const table_id = `${newItem.company_id}-${newItem.server_id}`;
     let type = 'create';
     if (!ctx.isNewInstance) {
       type = 'update';
@@ -35,7 +26,7 @@ module.exports = function(companyMonthly) {
         return _.assign(item, {user_id, type, table_name: modelName, table_id, created_at: new Date()});
       }).value();
 
-    const OperationHistory = companyMonthly.app.models.operationHistory;
+    const OperationHistory = companyInstall.app.models.operationHistory;
     OperationHistory.create(operation, function(err, result) {
       if (err) {
         return next(err);

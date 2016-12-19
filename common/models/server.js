@@ -2,6 +2,6 @@
 var objectAssign = require('object-assign');
 var _ = require('lodash');
 
-module.exports = function(GlobalRegion) {
+module.exports = function(Server) {
 
 };

@@ -33,6 +33,39 @@
     "dataSource": "activityDB",
     "public": false
   },
+
+  "team": {
+    "dataSource": "activityDB",
+    "public": true
+  },
+  
+  "avatar":{
+    "dataSource": "db",
+    "public": false
+  },
+
+  "user": {
+    "dataSource": "activityDB",
+    "public": true,
+    "options": {
+      "emailVerificationRequired": true
+    }
+  },
+
+  "Email": {
+    "dataSource": "emailDs"
+  },
+
+  "import": {
+      "dataSource": "db",
+      "public": true
+  },
+
+  "container": {
+      "dataSource": "storage",
+      "public": true
+  },
+
   "company": {
     "dataSource": "activityDB",
     "public": true
@@ -41,6 +74,11 @@
     "dataSource": "activityDB",
     "public": true
   },
+  "companyViewer": {
+    "dataSource": "activityDB",
+    "public": true
+  },
+
   "companyOrder": {
     "dataSource": "activityDB",
     "public": true
@@ -49,36 +87,57 @@
     "dataSource": "activityDB",
     "public": true
   },
+
+  "server": {
+    "dataSource": "activityDB",
+    "public": true
+  },
+
   "companyMonthly": {
     "dataSource": "activityDB",
     "public": true
   },
-  "Email": {
-    "dataSource": "emailDs"
+
+  "companyMonthlyReport": {
+    "dataSource": "activityDB",
+    "public": true
   },
-  "container": {
-      "dataSource": "storage",
-      "public": true
+
+  "companyVersionReport": {
+    "dataSource": "activityDB",
+    "public": true
+  },
+
+  "companyDaily": {
+    "dataSource": "activityDB",
+    "public": true
+  },
+  "companyInstall": {
+    "dataSource": "activityDB",
+    "public": true
+  },
+
+  "versionDaily": {
+    "dataSource": "activityDB",
+    "public": true
+  },
+  "versionMonthly": {
+    "dataSource": "activityDB",
+    "public": true
+  },
+
+  "companyCatalog": {
+    "dataSource": "activityDB",
+    "public": true
+  },
+
+  "operationHistory":{
+    "dataSource": "activityDB"
   },
 
   "globalRegion":{
     "dataSource": "activityDB",
     "public": true
-  },
-
-  "team": {
-    "dataSource": "activityDB",
-    "public": true
-  },
-  "avatar":{
-    "dataSource": "db",
-    "public": false
-  },
-  "user": {
-    "dataSource": "activityDB",
-    "public": true,
-    "options": {
-      "emailVerificationRequired": true
-    }
   }
+
 }
