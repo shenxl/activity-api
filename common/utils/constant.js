@@ -17,5 +17,9 @@ module.exports = {
     '用户数预估': 'order_prediction',
     '授权类型': 'order_type',
     '授权范围': 'order_area',
+    '授权到期时间': 'authorization_date',
+    '授权年限': 'authorization_years',
+    '服务到期时间': 'service_date',
+    '服务年限': 'length_of_service',
   },
 };

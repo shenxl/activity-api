@@ -63,6 +63,10 @@ module.exports = function(Import) {
               order_name: importData.order_name,
               prediction: importData.order_prediction,
               after_authorization: importData.order_afterAuthNum,
+              authorization_date: importData.authorization_date,
+              authorization_years: importData.authorization_years,
+              service_date: importData.service_date,
+              length_of_service: importData.length_of_service,
             };
             companyOrder.create(companyOrderItem).then((item) => {
               console.log('create order', item);
@@ -102,6 +106,10 @@ module.exports = function(Import) {
                 order_name: importData.order_name,
                 prediction: importData.order_prediction,
                 after_authorization: importData.order_afterAuthNum,
+                authorization_date: importData.authorization_date,
+                authorization_years: importData.authorization_years,
+                service_date: importData.service_date,
+                length_of_service: importData.length_of_service,
               };
               companyOrder.create(companyOrderItem).then((item) => {
                 console.log('create order', item);
@@ -123,6 +131,7 @@ module.exports = function(Import) {
           }
         }).catch(err => cb(err));
     });
+    console.log('导入结束');
     cb();
   };
 
