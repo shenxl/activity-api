@@ -75,16 +75,17 @@
     "dataSource": "activityDB",
     "public": true
   },
-  "companyActivity": {
-    "dataSource": "activityDB",
-    "public": true
-  },
   "companyViewer": {
     "dataSource": "activityDB",
     "public": true
   },
 
   "companyOrder": {
+    "dataSource": "activityDB",
+    "public": true
+  },
+  
+  "companyExport": {
     "dataSource": "activityDB",
     "public": true
   },
