@@ -1,6 +1,6 @@
 'use strict';
 module.exports = {
-  DIC: {
+  IMPORTDIC: {
     '客户名称': 'company_name',
     '用户类型': 'company_type',
     '用户行业': 'company_industry',

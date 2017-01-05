@@ -1,12 +1,12 @@
 {
-  "name": "companyActivity",
-  "plural": "companyActivities",
+  "name": "companyExport",
+  "plural": "companyExports",
   "base": "PersistedModel",
   "idInjection": true,
   "options": {
     "validateUpsert": true,
     "mysql": {
-      "table": "v_company_activity"
+      "table": "v_export_view"
     }
   },
   "properties": {
@@ -17,15 +17,6 @@
     "name": {
       "type": "string",
       "required": true
-    },
-    "group_id": {
-      "type": "number"
-    },
-    "is_group": {
-      "type": "boolean"
-    },
-    "buy":{
-      "type": "number"
     },
     "region": {
       "type": "string"
@@ -39,26 +30,17 @@
     "county": {
       "type": "string"
     },
-    "address": {
-      "type": "string"
-    },
     "type": {
       "type": "string"
     },
     "industry": {
       "type": "string"
     },
-    "important": {
-      "type": "string"
+    "buy": {
+      "type": "number"
     },
-    "created_at": {
-      "type": "date"
-    },
-    "updated_at": {
-      "type": "date"
-    },
-    "deleted_at": {
-      "type": "date"
+    "total": {
+      "type": "number"
     },
     "year": {
       "type": "number"
@@ -66,10 +48,10 @@
     "month": {
       "type": "number"
     },
-    "activity_sum": {
+    "server_id":{
       "type": "number"
     },
-    "activity_max": {
+    "activity_sum": {
       "type": "number"
     },
     "activity_avg": {
@@ -77,26 +59,10 @@
     },
     "install_sum": {
       "type": "number"
-    },
-    "install_max": {
-      "type": "number"
-    },
-    "install_avg": {
-      "type": "number"
-    },
-    "install_total":{
-      "type": "number"
     }
-
   },
   "validations": [],
-  "relations": {
-    "company": {
-      "type": "belongsTo",
-      "model": "company",
-      "foreignKey": "id"
-    }
-  },
+  "relations": {},
   "acls": [],
   "methods": {}
 }

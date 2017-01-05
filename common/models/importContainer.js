@@ -1,20 +1,19 @@
 'use strict';
+var loopback = require('loopback');
+var LoopBackContext = require('loopback-context');
 const CONTAINERS_URL = './server/storage';
 const XLSX = require('xlsx');
-const constant = require('../utils/constant.js');
 var Promise = require('bluebird');
+const constant = require('../utils/constant.js');
+var ImportStates = require('../utils/ImportStates.js');
 
-module.exports = function(Import) {
-  Import.companyInfo = function(ctx, options, cb) {
-    if (!options) options = {};
-    ctx.req.params.container = 'import';
-
-    // 解析导入文件
-    const workbook = XLSX.readFile(`${CONTAINERS_URL}/import/${'import-hsj.xlsx'}`);
+module.exports = function(ImportContainer) {
+  const importFile = (downloadUrl) =>{
+    const workbook = XLSX.readFile(`${CONTAINERS_URL}/importTemp/${downloadUrl}`);
     const sheet_name_list = workbook.SheetNames;
-    const company = Import.app.models.company;
-    const companyOrder = Import.app.models.companyOrder;
-    const companySn = Import.app.models.companySn;
+    const company = ImportContainer.app.models.company;
+    const companyOrder = ImportContainer.app.models.companyOrder;
+    const companySn = ImportContainer.app.models.companySn;
 
     const data = [];
     sheet_name_list.forEach(
@@ -111,37 +110,79 @@ module.exports = function(Import) {
       })
       .catch(err => {
         console.log(err);
-        cb(err);
       });
     }, 0)
     .then(() => console.log('导入结束')).catch(() => console.log('导入发生错误！'));
-    cb();
   };
 
-  Import.remoteMethod(
-    'companyInfo', {
-      description: '导入企业信息',
-      accepts: [{
-        arg: 'ctx',
-        type: 'object',
-        http: {
-          source: 'context',
-        },
-      }, {
-        arg: 'options',
-        type: 'object',
-        http: {
-          source: 'query',
-        },
-      }],
+  const updateFile = (ctx, options, callback) => {
+    ImportContainer.upload(ctx.req, ctx.result, options, function(err, fileObj) {
+      if (err) {
+        console.log('upload', err);
+        callback(err);
+      } else {
+        console.log(fileObj);
+        var fileInfo = fileObj.files.import[0];
+        const _downloadUrl = fileInfo.container + '/download/' + fileInfo.name;
+        const _systemUrl = fileInfo.container + '/' + fileInfo.name;
+        options.fileManager.create({
+          name: fileInfo.name,
+          type: fileInfo.type,
+          container: fileInfo.container,
+          option: 'import',
+          downloadUrl: _downloadUrl,
+          user_id: options.user_id,
+          state: ImportStates.uploaded,
+        }, function(err, obj) {
+          if (err !== null) {
+            callback(err);
+          } else {
+            importFile(_systemUrl);
+            callback(null, obj);
+          }
+        });
+      }
+    });
+  };
+
+  ImportContainer.import = function(ctx, options, callback) {
+    if (!options) options = {};
+    const context = LoopBackContext.getCurrentContext();
+    const currentUser = context && context.get('currentUser');
+    const containerName = (currentUser && currentUser.email) || 'temp';
+    const user_id = (currentUser && currentUser.id) || 0;
+    ctx.req.params.container = containerName;
+    options.user_id = user_id;
+    options.fileManager = ImportContainer.app.models.fileManager;
+    ImportContainer.getContainer(containerName, (err, result) => {
+      if (err && err.status === 404) {
+        ImportContainer.createContainer({name: containerName}, (err, result) => {
+          if (err) {
+            console.log('createContainer', err);
+            callback(err);
+          }
+          updateFile(ctx, options, callback);
+        });
+      } else if (err) {
+        console.log('getContainer', err);
+        callback(err);
+      }
+      updateFile(ctx, options, callback);
+    });
+  };
+
+  ImportContainer.remoteMethod(
+        'import',
+    {
+      description: '导入一个订单系统的模板',
+      accepts: [
+                {arg: 'ctx', type: 'object', http: {source: 'context'}},
+                {arg: 'options', type: 'object', http: {source: 'query'}},
+      ],
       returns: {
-        arg: 'fileObject',
-        type: 'object',
-        root: true,
+        arg: 'fileObject', type: 'object', root: true,
       },
-      http: {
-        verb: 'get',
-      },
+      http: {verb: 'post'},
     }
-  );
+    );
 };

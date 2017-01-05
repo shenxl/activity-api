@@ -59,6 +59,9 @@
     },
     "install_sum": {
       "type": "number"
+    },
+    "server_token": {
+      "type": "number"
     }
   },
   "validations": [],

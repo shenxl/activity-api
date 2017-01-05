@@ -8,6 +8,7 @@
     "posttest": "npm run lint && nsp check"
   },
   "dependencies": {
+    "bluebird": "^3.4.7",
     "body-parser": "^1.10.0",
     "compression": "^1.0.3",
     "cors": "^2.5.2",

@@ -4,12 +4,12 @@
     "connector": "memory"
   },
   "activityDB": {
-    "host": "localhost",
+    "host": "120.92.18.39",
     "port": 3306,
     "database": "wpsactivity",
-    "password": "",
+    "password": "stat+0756",
     "name": "activityDB",
-    "user": "root",
+    "user": "wpsstat",
     "connector": "mysql"
   },
   "emailDs": {
@@ -36,13 +36,6 @@
       "connector": "loopback-component-storage",
       "provider": "filesystem",
       "root": "./server/storage",
-      "maxFileSize": "52428800"
-  },
-  "importStorage": {
-      "name": "importStorage",
-      "connector": "loopback-component-storage",
-      "provider": "filesystem",
-      "root": "./server/storage/importTemp",
       "maxFileSize": "52428800"
   }
 }
