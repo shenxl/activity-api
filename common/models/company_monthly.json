@@ -9,25 +9,30 @@
     }
   },
   "properties": {
+    "hashkey":{
+      "type": "string",
+      "required": true,
+      "id":true
+    },
     "company_id": {
       "type": "number",
-      "required": true,
-      "id": 1
+      "required": true
     },
     "server_id": {
       "type": "number",
-      "required": true,
-      "id": 2
+      "required": true
     },
     "year": {
       "type": "number",
-      "required": true,
-      "id": 3
+      "required": true
     },
     "month": {
       "type": "number",
-      "required": true,
-      "id": 4
+      "required": true
+    },
+    "platform": {
+      "type": "string",
+      "required": true
     },
     "activity_sum": {
       "type": "number"

@@ -41,7 +41,7 @@
 
   "avatar":{
     "dataSource": "db",
-    "public": false
+    "public": true
   },
 
   "user": {
@@ -84,7 +84,7 @@
     "dataSource": "activityDB",
     "public": true
   },
-  
+
   "companyExport": {
     "dataSource": "activityDB",
     "public": true
