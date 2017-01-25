@@ -4,12 +4,12 @@
     "connector": "memory"
   },
   "activityDB": {
-    "host": "120.92.18.39",
+    "host": "localhost",
     "port": 3306,
-    "database": "wpsactivity_bk",
-    "password": "stat+0756",
+    "database": "wpsactivity",
+    "password": "",
     "name": "activityDB",
-    "user": "wpsstat",
+    "user": "root",
     "connector": "mysql"
   },
   "emailDs": {
